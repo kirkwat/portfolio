@@ -1,0 +1,39 @@
+---
+import { Icon } from "astro-icon";
+import type { FooterLink } from "~/types";
+
+const links: Array<FooterLink> = [
+  {
+    url: "https://github.com/kirkwat",
+    description: "Connect via GitHub",
+    icon: "fa-brands:github",
+  },
+  {
+    url: "https://www.linkedin.com/in/kirk-watson/",
+    description: "Connect via LinkedIn Profile",
+    icon: "fa-brands:linkedin",
+  },
+];
+---
+
+<hr class="border-t-2 border-t-neutral-400 w-[350px] md:w-[750px] mx-auto" />
+
+<footer class="relative flex items-center justify-center py-16">
+  <div class="absolute inset-0 overflow-hidden opacity-40">
+  </div>
+  <ul class="relative flex gap-4">
+    {
+      links.map((link) => (
+        <li>
+          <a
+            class="flex h-8 w-8 items-center justify-center"
+            href={link.url}
+          >
+            <span class="sr-only">{link.description}</span>
+            <Icon class="h-full" name={link.icon} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>
