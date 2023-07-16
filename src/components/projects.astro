@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "~/components/project-card.astro";
+
+const featuredSites = await getCollection(
+  "showcase",
+  ({ data }) => "featured" in data
+);
+const orderedSites = featuredSites.sort(
+  (a, b) => a.data.featured! - b.data.featured!
+);
+---
+
+<section
+  id="projects"
+  class="mx-auto flex max-w-6xl scroll-mt-24 flex-col items-center gap-4 space-y-8"
+>
+  <div>
+    <h3 class="gradient-text text-left font-extrabold tracking-tight text-2xl">
+      Projects
+    </h3>
+    <p class="mt-4 text-left">
+      I am currently a fourth year undergraduate student majoring in Computer
+      Science, Data Science, and Mathematics at Southern Methodist University.
+      My objective is to obtain a full-time position with a business that
+      compliments my degree plan and passion for software development. I am
+      eager to join a forward-thinking organization where I can leverage my
+      educational background, demonstrate my adaptability, produce high-quality
+      deliverables, and collaborate effectively with a diverse team. At this
+      time, I am actively seeking full-time software engineering opportunities
+      for when I graduate in May 2024.
+    </p>
+  </div>
+  <div class="max-w-6xl space-y-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {orderedSites.map((site) => <ProjectCard site={site} />)}
+    </div>
+    <p class="text-right text-sm">
+      <a class="text-primary" href="https://astro.build/showcase/">
+        ...and more &rarr;
+      </a>
+    </p>
+  </div>
+</section>

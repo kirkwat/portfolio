@@ -4,7 +4,7 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
 import type { NavItem } from "~/types";
 
 const navItems: Array<NavItem> = [
-  { title: "About", url: "#about" },
+  { title: "About", url: "/" },
   { title: "Projects", url: "#projects" },
   { title: "Contact", url: "#contact" },
   { title: "Resume", url: "#resume" },
@@ -13,66 +13,68 @@ const navItems: Array<NavItem> = [
 
 <header
   id="page-header"
-  class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-transparent px-8 py-4 text-white"
+  class="absolute bottom-0 z-20 w-full border-b border-transparent px-8 py-4 text-white"
 >
-  <a class="flex items-center gap-3 hover:!text-default" href="#splash">
-    <h1 class="sr-only">Kirk Watson</h1>
-    <h1 class="text-tighter font-bold">Kirk Watson</h1>
-  </a>
-  <div>
-    <div class="flex items-center gap-6">
-      <nav class="hidden sm:block">
-        <ul class="flex items-center gap-6">
-          {
-            navItems.map(({ title, url }) => (
-              <li>
-                <a class="text-sm" href={url}>
-                  {title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <button
-        id="open-nav-button"
-        type="button"
-        class="btn sm:hidden"
-        aria-label="Navigation"
-      >
-        <Icon pack="mdi" name="menu" class="h-8" />
-      </button>
-      <ThemeSwitcher />
-    </div>
-    <div id="menu-modal" class="modal hidden" aria-hidden="true">
-      <div class="fixed inset-0 bg-default px-8 py-4 text-default">
-        <div class="space-y-4" role="dialog" aria-modal="true">
-          <header class="text-right">
-            <button
-              id="close-nav-button"
-              type="button"
-              class="btn"
-              aria-label="Close navigation"
-            >
-              <Icon pack="mdi" name="close" class="h-8" />
-            </button>
-          </header>
-          <div class="flex justify-center">
-            <Icon name="logomark" class="h-16" />
+  <div class="mx-auto flex w-full max-w-6xl items-center justify-between">
+    <a class="flex items-center gap-3 hover:!text-default" href="#splash">
+      <h1 class="sr-only">Kirk Watson</h1>
+      <h1 class="text-tighter font-bold">Kirk Watson</h1>
+    </a>
+    <div>
+      <div class="flex items-center gap-6">
+        <nav class="hidden sm:block">
+          <ul class="flex items-center gap-6">
+            {
+              navItems.map(({ title, url }) => (
+                <li>
+                  <a class="text-sm" href={url}>
+                    {title}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <button
+          id="open-nav-button"
+          type="button"
+          class="btn sm:hidden"
+          aria-label="Navigation"
+        >
+          <Icon pack="mdi" name="menu" class="h-8" />
+        </button>
+        <ThemeSwitcher />
+      </div>
+      <div id="menu-modal" class="modal hidden" aria-hidden="true">
+        <div class="fixed inset-0 bg-default px-8 py-4 text-default">
+          <div class="space-y-4" role="dialog" aria-modal="true">
+            <header class="text-right">
+              <button
+                id="close-nav-button"
+                type="button"
+                class="btn"
+                aria-label="Close navigation"
+              >
+                <Icon pack="mdi" name="close" class="h-8" />
+              </button>
+            </header>
+            <div class="flex justify-center">
+              <Icon name="logomark" class="h-16" />
+            </div>
+            <nav>
+              <ul class="flex flex-col">
+                {
+                  navItems.map(({ title, url }) => (
+                    <li>
+                      <a class="block py-4 text-center text-xl" href={url}>
+                        {title}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </nav>
           </div>
-          <nav>
-            <ul class="flex flex-col">
-              {
-                navItems.map(({ title, url }) => (
-                  <li>
-                    <a class="block py-4 text-center text-xl" href={url}>
-                      {title}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </nav>
         </div>
       </div>
     </div>

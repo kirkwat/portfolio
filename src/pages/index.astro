@@ -1,12 +1,12 @@
 ---
 import "@fontsource-variable/inter";
-import Compatibility from "~/components/compatibility.astro";
-import Features from "~/components/features.astro";
-import Footer from "~/components/footer.astro";
-import Header from "~/components/header.astro";
-import Intro from "~/components/about.astro";
-import Showcase from "~/components/showcase.astro";
 import Splash from "~/components/splash.astro";
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import About from "~/components/about.astro";
+import Technologies from "~/components/technologies.astro";
+import Certifications from "~/components/certs.astro";
+import Projects from "~/components/projects.astro";
 import "~/styles/index.css";
 
 const { generator, site } = Astro;
@@ -64,10 +64,10 @@ const description =
     <Header />
     <Splash />
     <div class="space-y-24 px-8 py-32">
-      <Intro />
-      <Features />
-      <Compatibility />
-      <Showcase />
+      <About />
+      <Technologies />
+      <Certifications />
+      <Projects />
     </div>
     <Footer />
   </body>
