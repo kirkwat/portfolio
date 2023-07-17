@@ -1,7 +1,8 @@
 export interface TechnologyItem {
-  icon: string;
-  title: string;
-  url: string;
+  name: string;
+  imgSrc: string;
+  altSrc: string;
+  link: string;
 }
 
 export interface FeatureItem {

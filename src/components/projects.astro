@@ -13,7 +13,7 @@ const orderedSites = featuredSites.sort(
 
 <section
   id="projects"
-  class="mx-auto flex max-w-6xl scroll-mt-24 flex-col items-center gap-4 space-y-8"
+  class="mx-auto flex max-w-4xl scroll-mt-24 flex-col items-center gap-4 space-y-8"
 >
   <div>
     <h3 class="gradient-text text-left font-extrabold tracking-tight text-2xl">
@@ -31,7 +31,7 @@ const orderedSites = featuredSites.sort(
       for when I graduate in May 2024.
     </p>
   </div>
-  <div class="max-w-6xl space-y-2">
+  <div class="max-w-4xl space-y-2">
     <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {orderedSites.map((site) => <ProjectCard site={site} />)}
     </div>

@@ -1,60 +1,57 @@
 ---
-import { Icon } from "astro-icon";
-import type { FeatureItem } from "~/types";
+import { Picture } from "@astrojs/image/components";
+import aws_ccp from "~/assets/certs/aws_ccp.png";
+import aws_saa from "~/assets/certs/aws_saa.png";
+import aws_dva from "~/assets/certs/aws_dva.png";
+import aws_soa from "~/assets/certs/aws_soa.png";
 
-const features: Array<FeatureItem> = [
-  {
-    title: "Bring Your Own Framework",
-    description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
-    icon: "mdi:handshake",
-  },
-  {
-    title: "100% Static HTML, No JS",
-    description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
-    icon: "mdi:feather",
-  },
-  {
-    title: "On-Demand Components",
-    description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page. If the user never sees it, they never load it.",
-    icon: "mdi:directions-fork",
-  },
-];
+const widths = [450, 800, 1200];
+const sizes = "100vw";
 ---
 
 <section
   id="certifications"
-  class="mx-auto flex max-w-6xl scroll-mt-24 flex-col items-center gap-4 space-y-8"
+  class="mx-auto flex max-w-4xl scroll-mt-24 flex-col items-center gap-4 space-y-8"
 >
-  <div>
-    <h3 class="gradient-text text-left font-extrabold tracking-tight text-2xl">
-      Certifications
-    </h3>
-    <p class="mt-4 text-left">
-      I am currently a fourth year undergraduate student majoring in Computer
-      Science, Data Science, and Mathematics at Southern Methodist University.
-      My objective is to obtain a full-time position with a business that
-      compliments my degree plan and passion for software development. I am
-      eager to join a forward-thinking organization where I can leverage my
-      educational background, demonstrate my adaptability, produce high-quality
-      deliverables, and collaborate effectively with a diverse team. At this
-      time, I am actively seeking full-time software engineering opportunities
-      for when I graduate in May 2024.
-    </p>
-  </div>
-  <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-    {
-      features.map(({ title, description, icon }) => (
-        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
-          <div class="h-16 w-16 rounded-full border-2 border-current p-3">
-            <Icon name={icon} />
-          </div>
-          <p class="text-center font-extrabold text-xl">{title}</p>
-          <p class="text-center text-offset text-sm">{description}</p>
-        </li>
-      ))
-    }
+  <h3 class="gradient-text text-left font-extrabold tracking-tight text-2xl">
+    Certifications
+  </h3>
+  <ul class="grid w-2/3 grid-cols-2 gap-4 md:grid-cols-4">
+    <li>
+      <Picture
+        class="h-full w-full object-cover"
+        src={aws_saa}
+        widths={widths}
+        sizes={sizes}
+        alt="AWS Certified Solutions Architect - Associate"
+      />
+    </li>
+    <li>
+      <Picture
+        class="h-full w-full object-cover"
+        src={aws_dva}
+        widths={widths}
+        sizes={sizes}
+        alt="AWS Certified Developer - Associate"
+      />
+    </li>
+    <li>
+      <Picture
+        class="h-full w-full object-cover"
+        src={aws_soa}
+        widths={widths}
+        sizes={sizes}
+        alt="AWS Certified SysOps Administrator - Associate"
+      />
+    </li>
+    <li>
+      <Picture
+        class="h-full w-full object-cover"
+        src={aws_ccp}
+        widths={widths}
+        sizes={sizes}
+        alt="AWS Certified Cloud Practitioner"
+      />
+    </li>
   </ul>
 </section>
