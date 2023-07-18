@@ -1,9 +1,14 @@
 ---
+import { getCollection } from "astro:content";
 import { Picture } from "@astrojs/image/components";
-import aws_ccp from "~/assets/certs/aws_ccp.png";
-import aws_saa from "~/assets/certs/aws_saa.png";
-import aws_dva from "~/assets/certs/aws_dva.png";
-import aws_soa from "~/assets/certs/aws_soa.png";
+
+const featuredCerts = await getCollection(
+  "cert",
+  ({ data }) => "featured" in data
+);
+const orderedCerts = featuredCerts.sort(
+  (a, b) => a.data.featured! - b.data.featured!
+);
 
 const widths = [450, 800, 1200];
 const sizes = "100vw";
@@ -17,41 +22,19 @@ const sizes = "100vw";
     Certifications
   </h3>
   <ul class="grid w-2/3 grid-cols-2 gap-4 md:grid-cols-4">
-    <li>
-      <Picture
-        class="h-full w-full object-cover"
-        src={aws_saa}
-        widths={widths}
-        sizes={sizes}
-        alt="AWS Certified Solutions Architect - Associate"
-      />
-    </li>
-    <li>
-      <Picture
-        class="h-full w-full object-cover"
-        src={aws_dva}
-        widths={widths}
-        sizes={sizes}
-        alt="AWS Certified Developer - Associate"
-      />
-    </li>
-    <li>
-      <Picture
-        class="h-full w-full object-cover"
-        src={aws_soa}
-        widths={widths}
-        sizes={sizes}
-        alt="AWS Certified SysOps Administrator - Associate"
-      />
-    </li>
-    <li>
-      <Picture
-        class="h-full w-full object-cover"
-        src={aws_ccp}
-        widths={widths}
-        sizes={sizes}
-        alt="AWS Certified Cloud Practitioner"
-      />
-    </li>
+    {
+      orderedCerts.map((cert) => (
+        <li id={cert.id}>
+          <Picture
+            class="h-full w-full object-cover"
+            src={cert.data.image}
+            widths={widths}
+            aspectRatio={1}
+            sizes={sizes}
+            alt={cert.data.title}
+          />
+        </li>
+      ))
+    }
   </ul>
 </section>
