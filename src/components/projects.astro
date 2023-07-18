@@ -3,27 +3,17 @@ import { getCollection } from "astro:content";
 import ContentSection from "./content-section.astro";
 import ProjectCard from "~/components/project-card.astro";
 
-const featuredSites = await getCollection(
+const featuredProjects = await getCollection(
   "showcase",
   ({ data }) => "featured" in data
 );
-const orderedSites = featuredSites.sort(
+const orderedProjects = featuredProjects.sort(
   (a, b) => a.data.featured! - b.data.featured!
 );
 ---
 
 <ContentSection id="projects" title="Projects">
-  <div class="max-w-4xl space-y-2">
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-      {orderedSites.map((site) => <ProjectCard site={site} />)}
-    </div>
-    <p class="text-right text-sm">
-      <a class="text-primary" href="https://astro.build/showcase/">
-        ...and more &rarr;
-      </a>
-    </p>
-  </div>
-  <ul class="grid w-2/3 grid-cols-2 gap-4 md:grid-cols-4">
-    <li></li>
+  <ul class="grid grid-cols-1 gap-4 md:grid-cols-2">
+    {orderedProjects.map((project) => <ProjectCard project={project} />)}
   </ul>
 </ContentSection>
