@@ -1,11 +1,11 @@
 {
   "title": "MateMatch",
-  "image": "/src/content/project/images/matematch.png",
+  "image": "/src/content/project/images/matematch.jpg",
   "featured": 2,
   "technologies": [
     "JavaScript",
     "React",
-    "BootStrap CSS",
+    "BootStrap",
     "Node.js",
     "MySQL",
     "AWS"

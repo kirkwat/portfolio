@@ -2,28 +2,28 @@
 import { Picture } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 import type { CollectionEntry } from "astro:content";
-import { resolveImage } from "~/content/showcase/_resolveImage.js";
 
 export interface Props {
-  project: CollectionEntry<"showcase">;
+  project: CollectionEntry<"project">;
 }
 
 const { project } = Astro.props;
-const image = await resolveImage(project);
 const widths = [450, 800];
 const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
-const strings = ["hello", "world", "world", "world", "world", "world"];
 ---
 
 <li id={project.id} class="group aspect-video hover:!text-default">
-  <figure class="relative h-full w-full overflow-hidden rounded-xl">
+  <figure
+    class="relative h-full w-full overflow-hidden rounded-xl drop-shadow-lg transition-all duration-300 group-hover:drop-shadow-2xl group-focus:drop-shadow-2xl"
+  >
     <Picture
-      class="h-full w-full bg-cover object-cover opacity-60 transition-all duration-300 group-hover:scale-110 group-focus:scale-110"
-      src={image.src}
+      class="h-full w-full bg-cover object-cover object-top opacity-60 transition-all duration-300 group-hover:scale-110 group-focus:scale-110"
+      src={project.data.image}
       widths={widths}
       sizes={sizes}
-      aspectRatio="16:9"
-      alt={`A screenshot of ${project.data.url}`}
+      aspectRatio={"16:9"}
+      fit="fill"
+      alt={`A screenshot of ${project.data.title}`}
     />
     <figcaption class="absolute inset-0">
       <div
@@ -35,35 +35,47 @@ const strings = ["hello", "world", "world", "world", "world", "world"];
           {project.data.title}
         </h3>
         <div class="hidden gap-3 group-hover:flex group-focus:flex">
-          <a
-            href="https://github.com/kirkwat"
-            class="rounded-full bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-          >
-            <Icon name="fa-brands:github" class="h-6" />
-          </a>
-          <a
-            href="https://github.com/kirkwat"
-            class="rounded-full bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-          >
-            <Icon name="fa-brands:youtube" class="h-6" />
-          </a>
-          <a
-            href="https://github.com/kirkwat"
-            class="rounded-full bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-          >
-            <Icon name="fa-brands:github" class="h-6" />
-          </a>
+          {
+            project.data.links.site && (
+              <a
+                href={project.data.links.site}
+                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
+              >
+                <Icon name="fa-solid:tv" class="h-6 w-6" />
+              </a>
+            )
+          }
+          {
+            project.data.links.github && (
+              <a
+                href={project.data.links.github}
+                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
+              >
+                <Icon name="fa-brands:github" class="h-6 w-6" />
+              </a>
+            )
+          }
+          {
+            project.data.links.demo && (
+              <a
+                href={project.data.links.demo}
+                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
+              >
+                <Icon name="fa-brands:youtube" class="h-6 w-6" />
+              </a>
+            )
+          }
         </div>
         <ul
           class="hidden flex-row flex-wrap-reverse gap-3 group-hover:flex group-focus:flex"
         >
           {
-            strings.map((string) => (
+            project.data.technologies.map((tech) => (
               <li
-                id={string}
-                class="rounded-full bg-offset px-3 py-1.5 font-semibold opacity-80 transition-all duration-300 text-sm"
+                id={tech}
+                class="rounded-full border border-current bg-offset px-3 py-1.5 font-semibold opacity-80 transition-all duration-300 text-sm hover:opacity-100 dark:border-none"
               >
-                {string}
+                {tech}
               </li>
             ))
           }
