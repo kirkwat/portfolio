@@ -1,6 +1,7 @@
-import image from "@astrojs/image";
-import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import image from "@astrojs/image";
+import mdx from "@astrojs/mdx";
 
 export default defineConfig({
   site: "https://kirkwatson.net/",
@@ -9,6 +10,7 @@ export default defineConfig({
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
+    mdx(),
   ],
   vite: {
     ssr: {
