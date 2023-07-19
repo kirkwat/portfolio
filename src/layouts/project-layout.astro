@@ -41,49 +41,54 @@ const prevPost = orderedProjects[currentPost - 1];
   >
     <ProjectHeader />
     <ProjectProgressTracker />
-    <main class="mx-auto flex max-w-4xl flex-col items-center space-y-24 py-32">
+    <main
+      class="mx-auto flex max-w-4xl flex-col items-center px-8 pt-24 md:pt-32"
+    >
       <div>
-        <h1 class="mb-4 font-bold text-4xl">{frontmatter.longTitle}</h1>
+        <h1 class="mb-4 font-medium text-4xl">{frontmatter.longTitle}</h1>
         <div class="flex gap-4">
           <p class="flex items-center text-sm">
             <Icon
               name="system-uicons:calendar-month"
-              class="text-neon-green mr-2"
+              class="mr-2 text-lime-500"
             />
             {formattedDate}
           </p>
           <p class="flex items-center text-sm">
-            <Icon name="system-uicons:clock" class="text-neon-green mr-2" />
+            <Icon name="system-uicons:clock" class="mr-2 text-lime-500" />
             6 min read
           </p>
         </div>
-        <hr class="mb-10 mt-5" />
-        <br />
-        <article>
+        <hr class="my-5" />
+        <article id="markdown-content">
           <slot />
         </article>
       </div>
-      <div class="mb-10 w-[350px] md:w-[750px]">
+      <div class="mb-14 w-full max-w-4xl">
         <div class="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:gap-6">
           {
             prevPost && (
               <a
                 href={`/projects/${prevPost.slug}`}
-                class="hover:border-neon-green flex grow flex-col rounded border border-zinc-700 p-4 transition duration-500 ease-out text-sm"
+                class="flex grow flex-col rounded border border-zinc-700 p-4 transition duration-500 ease-out text-sm hover:border-current"
               >
-                <p class="mb-1 text-zinc-400">&larr; Previous project</p>
-                <p class="font-semibold text-zinc-300">{prevPost.data.title}</p>
+                <p class="mb-1">&larr; Previous project</p>
+                <p class="font-semibold opacity-70">
+                  {prevPost.data.longTitle}
+                </p>
               </a>
             )
           }
           {
             nextPost && (
               <a
-                href={`/project/${nextPost.slug}`}
-                class="hover:border-neon-green flex grow flex-col rounded border border-zinc-700 p-4 text-right transition duration-500 ease-out text-sm"
+                href={`/projects/${nextPost.slug}`}
+                class="flex grow flex-col rounded border border-zinc-700 p-4 text-right transition duration-500 ease-out text-sm hover:border-current"
               >
                 <p class="mb-1">Next project &rarr;</p>
-                <p class="font-semibold text-zinc-300">{nextPost.data.title}</p>
+                <p class="font-semibold opacity-70">
+                  {nextPost.data.longTitle}
+                </p>
               </a>
             )
           }
