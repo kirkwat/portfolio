@@ -1,0 +1,86 @@
+---
+title: "SpeedyApply"
+description: "This Chrome extension is a job application autofill tool for portals such as Workday, ICIMS, and Greenhouse."
+image: "/src/content/project/images/speedyapply.jpg"
+featured: 1
+technologies:
+  - TypeScript
+  - React
+  - Tailwind CSS
+  - Zod
+links:
+  site: "https://speedyapply.com/"
+  demo: "https://www.youtube.com/watch?v=UGazvOuWkZo"
+---
+
+<a href="https://www.speedyapply.com/">
+  <img src="https://imgur.com/XR0G9I5.png" 
+       alt="SpeedyApply"
+       width="400rem">
+</a>
+
+#### This Chrome extension is a job application autofill tool for portals such as Workday, ICIMS, and Greenhouse.
+
+- [Click here](https://speedyapply.com/) to view in the Chrome Web Store.
+- [Click here](https://www.youtube.com/watch?v=UGazvOuWkZo) to view the demo.
+
+<hr/>
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Implementation Details](#implementation-details)
+  - [Chrome Extension Components](#chrome-extension-components)
+- [Next Steps](#next-steps)
+
+## Overview
+
+SpeedyApply is the ultimate solution for job seekers who want to take control of their job application process. With SpeedyApply, you can create a comprehensive job profile and use it to apply to multiple job application portals with just a few clicks. Our powerful autofill scripts ensure that your application is filled out accurately and quickly, saving you precious time and effort.
+
+But SpeedyApply doesn't stop there! With our Analytics page, you can track your job application progress and stay on top of your job search. You'll be able to see which jobs you've applied to and when you applied, allowing you to easily follow up with potential employers and stay organized throughout the job search process.
+
+Whether you're a seasoned job seeker or just starting out, SpeedyApply is the must-have Chrome extension that will make your job search a breeze. Don't waste any more time filling out tedious job applications by hand – download SpeedyApply today and take the first step towards your dream job!
+
+## Key Features
+
+- Create and edit detailed job profile including resume with ability to import and export in JSON format.
+- Complete intricate application forms on popular job/career portals with a reliable, efficient, and seamless experience.
+  - Supported Job/Career Portals
+    - Workday
+    - ICIMS
+    - SuccessFactors
+    - Greenhouse
+    - Lever
+- Track and visualize the progression of completed applications over time with dependable tracking and ability to export application data in CSV format.
+- Customize autofill configurations to meet individual needs.
+  - Modify single job/career portal settings (including option to disable).
+  - Set a default password for account creation or login (warning: not a secure practice)
+
+## Implementation Details
+
+#### Technologies: TypeScript, React, Tailwind, Zod
+
+Vite, in conjunction with the CRXJS Vite plugin, was utilized to develop this Chrome extension, enabling efficient creation and optimization of the project during the development process.
+
+CI/CD was integrated into the project workflow through the adoption of Semantic Release and GitHub Actions, enabling streamlined automation and deployment processes. Pull requests underwent build checks to ensure successful compilation before being permitted to merge into the main branch. Semantic Release automated versioning and changelog generation while also publishing compiled Chrome extension versions to the Chrome Web Store.
+
+### Chrome Extension Components
+
+- Popup Window: Provides users with convenient access to essential pages, easy tracking of daily application count, and a quick toggle option to enable/disable autofill scripts.
+
+- Options Tab: Offers a comprehensive interface for users to view completed applications, create/edit job profile, and configure autofill settings, providing centralized control and enhanced customization capabilities.
+
+- Content Script: Implements autofill scripts to seamlessly populate forms and input fields, streamlining the application process.
+
+- Storage: Utilizes the Chrome Storage API to store the job profile, extension settings, and completed applications.
+  The user retains complete control and confidence over their information as it is securely stored on their local machine.
+
+## Next Steps
+
+Features that I plan to implement in the future include:
+
+- Autofill support for more application portals.
+- GPT API integration to suggest responses for open-ended questions.
+- Enhance application analysis with more filters and visual data representation.
+- Possibly open source to expand features and customization options.

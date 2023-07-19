@@ -7,11 +7,14 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
   class="absolute bottom-0 z-20 w-full border-b border-transparent px-8 py-4 text-white"
 >
   <div class="mx-auto flex w-full max-w-6xl items-center justify-between">
-    <a class="flex items-center gap-3 hover:!text-default" href="/">
+    <a
+      id="site-title"
+      class="flex scale-0 transform items-center gap-2 font-bold tracking-tighter transition-all duration-500"
+      href="/"
+    >
       <h1 class="sr-only">Kirk Watson</h1>
-      <h1 class="text-tighter font-bold">Kirk Watson</h1>
+      <h1>Kirk Watson</h1>
     </a>
-    <div class="flex items-center gap-6"></div>
     <div class="flex items-center gap-6">
       <ThemeSwitcher />
     </div>
@@ -32,5 +35,9 @@ import ThemeSwitcher from "~/components/theme-switcher.astro";
   .fixed-header {
     @apply fixed bottom-auto top-0;
     @apply border-default bg-default text-default;
+  }
+
+  :global(.fixed-header) #site-title {
+    @apply scale-100;
   }
 </style>

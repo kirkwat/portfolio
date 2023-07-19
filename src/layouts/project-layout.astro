@@ -1,0 +1,115 @@
+---
+import { Icon } from "astro-icon";
+import { getCollection } from "astro:content";
+import Header from "~/components/header.astro";
+import Footer from "~/components/footer.astro";
+import Head from "~/components/head.astro";
+import BlogProgressTracker from "~/components/project-progress-tracker.astro";
+
+interface BlogPostLayoutProps {
+  frontmatter: {
+    title: string;
+    description: string;
+    pubDate: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+  };
+  minutes: {
+    minutesRead: string;
+  };
+}
+
+let { frontmatter, minutes } = Astro.props as BlogPostLayoutProps;
+
+const formattedDate = new Date(frontmatter.pubDate).toLocaleDateString(
+  "en-us",
+  {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }
+);
+
+const featuredProjects = await getCollection(
+  "project",
+  ({ data }) => "featured" in data
+);
+const orderedProjects = featuredProjects.sort(
+  (a, b) => a.data.featured! - b.data.featured!
+);
+
+// get the index of the current post
+const index = orderedProjects.findIndex((project) => {
+  return Astro.request.url.includes(project.slug ?? "");
+});
+
+// get the next and previous posts
+const nextPost = orderedProjects[index + 1];
+const prevPost = orderedProjects[index - 1];
+---
+
+<html lang="en">
+  <Head title={frontmatter.title} description={frontmatter.description} />
+  <Header />
+  <body>
+    <BlogProgressTracker />
+    <main class="flex flex-col items-center text-white">
+      <div class="w-[350px] md:w-[750px]">
+        <h1 class="mb-4 font-bold text-4xl">{frontmatter.title}</h1>
+        <div class="flex gap-4">
+          <p class="flex items-center text-sm">
+            <Icon
+              name="system-uicons:calendar-month"
+              class="text-neon-green mr-2"
+            />
+            {formattedDate}
+          </p>
+          <p class="flex items-center text-sm">
+            <Icon name="system-uicons:clock" class="text-neon-green mr-2" />
+            {minutes.minutesRead}
+          </p>
+        </div>
+        <hr class="mb-10 mt-5" />
+        <img
+          src={frontmatter.image.src}
+          alt={frontmatter.image.alt}
+          class="rounded-lg"
+        />
+        <br />
+        <article>
+          <slot />
+        </article>
+      </div>
+      <div class="mb-10 w-[350px] md:w-[750px]">
+        <div class="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:gap-6">
+          {
+            prevPost && (
+              <a
+                href={`/projects/${prevPost.slug}`}
+                class="hover:border-neon-green flex grow flex-col rounded border border-zinc-700 p-4 transition duration-500 ease-out text-sm"
+              >
+                <p class="mb-1 text-zinc-400">&larr; Previous project</p>
+                <p class="font-semibold text-zinc-300">{prevPost.data.title}</p>
+              </a>
+            )
+          }
+          {
+            nextPost && (
+              <a
+                href={`/project/${nextPost.slug}`}
+                class="hover:border-neon-green flex grow flex-col rounded border border-zinc-700 p-4 text-right transition duration-500 ease-out text-sm"
+              >
+                <p class="mb-1">Next project &rarr;</p>
+                <p class="font-semibold text-zinc-300">{nextPost.data.title}</p>
+              </a>
+            )
+          }
+        </div>
+      </div>
+      <div class="mb-10 w-[350px] md:w-[750px]"></div>
+    </main>
+    <Footer />
+  </body>
+</html>
