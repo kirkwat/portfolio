@@ -24,7 +24,12 @@ const links: Array<FooterLink> = [
     {
       links.map((link) => (
         <li>
-          <a class="flex h-8 w-8 items-center justify-center" href={link.url}>
+          <a
+            class="flex h-8 w-8 items-center justify-center"
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span class="sr-only">{link.description}</span>
             <Icon class="h-full" name={link.icon} />
           </a>

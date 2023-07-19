@@ -36,12 +36,24 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
         </h3>
         <div class="hidden gap-3 group-hover:flex group-focus:flex">
           {
+            project.slug && (
+              <a
+                href={`/projects/${project.slug}`}
+                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
+              >
+                <Icon name="charm:info" class="h-6 w-6" />
+              </a>
+            )
+          }
+          {
             project.data.links.site && (
               <a
                 href={project.data.links.site}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
               >
-                <Icon name="fa-solid:tv" class="h-6 w-6" />
+                <Icon name="ci:external-link" class="h-6 w-6" />
               </a>
             )
           }
@@ -49,6 +61,8 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
             project.data.links.github && (
               <a
                 href={project.data.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
               >
                 <Icon name="fa-brands:github" class="h-6 w-6" />
@@ -59,6 +73,8 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
             project.data.links.demo && (
               <a
                 href={project.data.links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
               >
                 <Icon name="fa-brands:youtube" class="h-6 w-6" />

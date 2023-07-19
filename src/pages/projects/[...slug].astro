@@ -1,21 +1,25 @@
 ---
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import ProjectLayout from "../../layouts/project-layout.astro";
 
 export const prerender = true;
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("project");
 
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
+export async function getStaticPaths() {
+  const projectEntries = await getCollection("project");
+  return projectEntries.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
   }));
 }
 
-const { entry } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await entry.render();
+interface Props {
+  project: CollectionEntry<"project">;
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
 ---
 
-<ProjectLayout frontmatter={entry.data} minutes={remarkPluginFrontmatter}>
+<ProjectLayout frontmatter={project.data}>
   <Content />
 </ProjectLayout>

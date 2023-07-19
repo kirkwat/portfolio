@@ -1,0 +1,21 @@
+---
+import ThemeSwitcher from "~/components/theme-switcher.astro";
+---
+
+<header
+  class="fixed top-0 z-20 w-full border-b border-default bg-default px-8 py-4 text-default"
+>
+  <div class="mx-auto flex w-full max-w-4xl items-center justify-between">
+    <a
+      id="site-title"
+      class="flex transform items-center gap-2 font-bold tracking-tighter transition-all duration-500"
+      href="/"
+    >
+      <h1 class="sr-only">Kirk Watson</h1>
+      <h1>Kirk Watson</h1>
+    </a>
+    <div class="flex items-center gap-6">
+      <ThemeSwitcher id="theme-switcher-project" />
+    </div>
+  </div>
+</header>

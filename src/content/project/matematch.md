@@ -1,7 +1,8 @@
 ---
 title: "MateMatch"
+longTitle: "MateMatch - Roommate Finder"
 description: "This full-stack web application allows users to find new roommates tailored to their preferences."
-image: "/src/content/project/images/matematch.jpg"
+image: "/src/content/project/_images/matematch.jpg"
 featured: 2
 technologies:
   - JavaScript
@@ -16,10 +17,10 @@ links:
   demo: "https://www.youtube.com/watch?v=c0ZcLqA5QlE"
 ---
 
-<a href="https://matematching.com/">
+<a href="https://matematching.com/" target="\_blank" rel="noopener noreferrer">
   <img src="https://raw.githubusercontent.com/kirkwat/mate-match/main/frontend/public/images/branding.png" 
-       alt="Mate Match"
-       width="400rem"/>
+        alt="Mate Match"
+        width="400rem"/>
 </a>
 
 #### This full-stack web application allows users to find new roommates tailored to their preferences.

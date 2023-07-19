@@ -13,6 +13,7 @@ const project = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string().min(1),
+    longTitle: z.string().min(1),
     description: z.string().min(1),
     image: z.string(),
     featured: z.number().min(1).optional(),
