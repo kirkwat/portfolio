@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter Variable", ...defaultTheme.fontFamily.sans],
+        sans: ["Roboto"],
       },
       colors: {
         primary: "var(--color-primary)",
@@ -21,6 +21,10 @@ module.exports = {
       },
       borderColor: {
         default: "var(--color-border)",
+      },
+      listStyleType: {
+        square: "square",
+        roman: "upper-roman",
       },
     },
   },

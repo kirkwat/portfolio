@@ -1,12 +1,5 @@
-/* TODO: consider creating <Button> and <GradientText> components */
-a,
-.btn {
-  @apply transition-colors duration-200;
-  @apply hover:text-secondary;
-  @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
-}
-
+/* TODO: consider creating <GradientText> components */
 .gradient-text {
   @apply bg-clip-text text-transparent;
-  @apply bg-gradient-to-br from-gray-300 via-gray-400 to-gray-500;
+  @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;
 }

@@ -10,12 +10,14 @@ const cert = defineCollection({
 });
 
 const project = defineCollection({
-  type: "data",
+  type: "content",
   schema: z.object({
     title: z.string().min(1),
+    longTitle: z.string().min(1),
+    description: z.string().min(1),
     image: z.string(),
     featured: z.number().min(1).optional(),
-    technologies: z.array(z.string()),
+    technologies: z.array(z.object({ name: z.string(), color: z.string() })),
     links: z.object({
       site: z.string().url().optional(),
       github: z.string().url().optional(),
@@ -24,18 +26,7 @@ const project = defineCollection({
   }),
 });
 
-const showcase = defineCollection({
-  type: "data",
-  schema: z.object({
-    title: z.string().min(1),
-    image: z.string(),
-    url: z.string().url(),
-    featured: z.number().min(1).optional(),
-  }),
-});
-
 export const collections = {
   cert,
   project,
-  showcase,
 };

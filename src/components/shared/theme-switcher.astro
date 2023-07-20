@@ -1,22 +1,30 @@
 ---
 import { Icon } from "astro-icon";
+
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
 ---
 
-<!--
-  negative margin is sum of button width (8) and gap size of flex parent (6)
-  TODO don't hardcode these values
--->
 <button
-  id="theme-switcher"
+  id={id}
   type="button"
-  class="-ml-12 origin-[right_center] scale-0 transition-all duration-500"
+  class="origin-[right_center] scale-0 transition-all duration-500"
 >
   <div id="icon-theme-light">
-    <Icon name="fa-solid:sun" class="h-6" />
+    <Icon
+      name="fa-solid:sun"
+      class="h-6 transition-colors duration-200 hover:text-secondary"
+    />
     <span class="sr-only">Use light theme</span>
   </div>
   <div id="icon-theme-dark" class="hidden">
-    <Icon name="fa-solid:moon" class="h-6" />
+    <Icon
+      name="fa-solid:moon"
+      class="h-6 transition-colors duration-200 hover:text-secondary"
+    />
     <span class="sr-only">Use dark theme</span>
   </div>
 </button>
@@ -25,7 +33,9 @@ import { Icon } from "astro-icon";
   import invariant from "tiny-invariant";
 
   const themes = ["light", "dark"];
-  const button = document.querySelector("#theme-switcher");
+  const button = document.querySelector(
+    "#theme-switcher-project, #theme-switcher-landing"
+  );
   invariant(button, "button should not be null");
 
   const getThemeCurrent = () => document.documentElement.dataset.theme;
@@ -58,7 +68,11 @@ import { Icon } from "astro-icon";
 </script>
 
 <style>
-  :global(.fixed-header) #theme-switcher {
-    @apply ml-0 scale-100;
+  :global(#theme-switcher-project) {
+    @apply scale-100;
+  }
+
+  :global(.fixed-header) #theme-switcher-landing {
+    @apply scale-100;
   }
 </style>
