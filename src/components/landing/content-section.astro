@@ -2,17 +2,19 @@
 export interface Props {
   id: string;
   title: string;
+  subtitle?: string;
 }
 
-const { title, id } = Astro.props;
+const { id, title, subtitle } = Astro.props;
 ---
 
 <section
   id={id}
-  class="mx-auto flex max-w-6xl scroll-mt-24 flex-col items-center gap-4 space-y-8"
+  class="mx-auto flex max-w-6xl scroll-mt-24 flex-col items-center gap-4 space-y-6"
 >
   <h3 class="gradient-text text-left font-extrabold tracking-tight text-4xl">
     {title}
   </h3>
+  {subtitle && <p class="font-medium text-offset">{subtitle}</p>}
   <slot />
 </section>

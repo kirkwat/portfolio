@@ -12,8 +12,12 @@ const orderedProjects = featuredProjects.sort(
 );
 ---
 
-<ContentSection id="projects" title="Projects">
-  <ul class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+<ContentSection
+  id="projects"
+  title="Projects"
+  subtitle="Here are some projects that I've been working on recently!"
+>
+  <ul class="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
     {orderedProjects.map((project) => <ProjectCard project={project} />)}
   </ul>
 </ContentSection>

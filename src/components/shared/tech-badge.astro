@@ -8,7 +8,10 @@ interface Props {
 const { tech } = Astro.props;
 ---
 
-<span
-  class={`rounded-full border border-current bg-[${tech.color}] px-2 py-1 opacity-80 transition-all duration-300 text-xs hover:opacity-100`}
-  >{tech.name}</span
+<li
+  id={tech.name}
+  class="py-.5 cursor-pointer rounded-full border border-default px-2 text-white drop-shadow-md transition-all duration-300 text-xs hover:bg-white hover:text-offset hover:shadow-md"
+  style={{ backgroundColor: tech.color }}
 >
+  {tech.name}
+</li>

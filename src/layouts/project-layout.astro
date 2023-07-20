@@ -24,15 +24,9 @@ const { frontmatter } = Astro.props;
     >
       <div>
         <h1 class="mb-4 font-medium text-4xl">{frontmatter.longTitle}</h1>
-        {
-          frontmatter.technologies && (
-            <div class="flex flex-wrap gap-4">
-              {frontmatter.technologies.map((tech) => (
-                <TechBadge tech={tech} />
-              ))}
-            </div>
-          )
-        }
+        <ul class="flex flex-wrap gap-x-2 gap-y-1.5">
+          {frontmatter.technologies.map((tech) => <TechBadge tech={tech} />)}
+        </ul>
         <hr class="my-5" />
         <article id="markdown-content">
           <slot />

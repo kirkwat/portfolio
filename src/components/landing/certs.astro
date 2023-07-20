@@ -15,13 +15,17 @@ const widths = [450, 800, 1200];
 const sizes = "100vw";
 ---
 
-<ContentSection id="certs" title="Certifications">
+<ContentSection
+  id="certs"
+  title="Certifications"
+  subtitle="These are some of my latest certs!"
+>
   <ul class="grid w-2/3 grid-cols-2 gap-4 md:grid-cols-4">
     {
       orderedCerts.map((cert) => (
         <li id={cert.id}>
           <Picture
-            class="h-full w-full object-cover transition-all duration-300 hover:scale-110 focus:scale-110"
+            class="h-full w-full object-cover transition-all duration-300 hover:scale-110 focus:scale-105"
             src={cert.data.image}
             widths={widths}
             aspectRatio={1}
