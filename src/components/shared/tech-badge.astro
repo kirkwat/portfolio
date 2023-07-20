@@ -1,0 +1,14 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  tech: CollectionEntry<"project">["data"]["technologies"][number];
+}
+
+const { tech } = Astro.props;
+---
+
+<span
+  class={`rounded-full border border-current bg-[${tech.color}] px-2 py-1 opacity-80 transition-all duration-300 text-xs hover:opacity-100`}
+  >{tech.name}</span
+>

@@ -1,0 +1,60 @@
+---
+import { getCollection } from "astro:content";
+
+const featuredProjects = await getCollection(
+  "project",
+  ({ data }) => "featured" in data
+);
+
+const orderedProjects = featuredProjects.sort(
+  (a, b) => a.data.featured! - b.data.featured!
+);
+
+const currentPost = orderedProjects.findIndex((project) => {
+  return Astro.request.url.includes(project.slug ?? "");
+});
+
+const nextPost = orderedProjects[currentPost + 1];
+const prevPost = orderedProjects[currentPost - 1];
+---
+
+<div class="mb-14 mt-10 flex w-full flex-col gap-4 sm:flex-row sm:gap-6">
+  {
+    prevPost && (
+      <a
+        href={`/projects/${prevPost.slug}`}
+        class="group flex grow cursor-pointer flex-col rounded border p-4 text-sm hover:border-secondary"
+      >
+        <p class="mb-1 opacity-70">
+          <span class="text-current">&larr; </span>
+          <span class="text-default decoration-secondary group-hover:underline">
+            Previous project
+          </span>
+        </p>
+        <p class="font-medium decoration-secondary group-hover:underline">
+          {prevPost.data.longTitle}
+        </p>
+      </a>
+    )
+  }
+  {
+    nextPost && (
+      <>
+        <a
+          href={`/projects/${nextPost.slug}`}
+          class="group flex grow cursor-pointer flex-col rounded border p-4 text-right text-sm hover:border-secondary"
+        >
+          <p class="mb-1 opacity-70">
+            <span class="text-default decoration-secondary group-hover:underline">
+              Next project
+            </span>
+            <span class="text-current"> &rarr;</span>
+          </p>
+          <p class="font-medium decoration-secondary group-hover:underline">
+            {nextPost.data.longTitle}
+          </p>
+        </a>
+      </>
+    )
+  }
+</div>

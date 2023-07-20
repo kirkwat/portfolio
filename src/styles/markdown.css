@@ -31,11 +31,11 @@
 }
 
 #markdown-content ul {
-  @apply my-2 ml-6 list-outside list-disc text-offset;
+  @apply my-2 ml-5 list-outside list-disc text-offset;
 }
 
 #markdown-content ol {
-  @apply my-2 ml-6 list-outside list-decimal text-offset;
+  @apply my-2 ml-5 list-outside list-decimal text-offset;
 }
 
 #markdown-content li {
@@ -48,12 +48,12 @@
 
 #markdown-content ul ul,
 #markdown-content ol ul {
-  @apply ml-6 mt-2 list-outside list-square;
+  @apply ml-5 mt-2 list-outside list-square;
 }
 
 #markdown-content ul ol,
 #markdown-content ol ol {
-  @apply ml-6 mt-2 list-outside list-roman;
+  @apply ml-5 mt-2 list-outside list-roman;
 }
 
 #markdown-content blockquote {

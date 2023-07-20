@@ -1,0 +1,23 @@
+---
+import ThemeSwitcher from "~/components/shared/theme-switcher.astro";
+import ProjectProgressTracker from "./project-progress-tracker.astro";
+---
+
+<header
+  class="fixed top-0 z-20 w-full border-b border-default bg-offset py-3 text-default"
+>
+  <div class="mx-auto flex max-w-4xl items-center justify-between px-8">
+    <a
+      id="site-title"
+      class="flex transform items-center gap-2 font-medium tracking-tight transition-all duration-500 text-lg hover:text-secondary"
+      href="/"
+    >
+      <h1 class="sr-only">Kirk Watson</h1>
+      <h1>Kirk Watson</h1>
+    </a>
+    <div class="flex items-center gap-4">
+      <ProjectProgressTracker />
+      <ThemeSwitcher id="theme-switcher-project" />
+    </div>
+  </div>
+</header>

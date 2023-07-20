@@ -1,11 +1,4 @@
-/* TODO: consider creating <Button> and <GradientText> components */
-a,
-.btn {
-  @apply transition-colors duration-200;
-  @apply hover:text-secondary;
-  @apply cursor-pointer;
-}
-
+/* TODO: consider creating <GradientText> components */
 .gradient-text {
   @apply bg-clip-text text-transparent;
   @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;

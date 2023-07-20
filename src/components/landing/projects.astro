@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import ContentSection from "~/components/content-section.astro";
-import ProjectCard from "~/components/project-card.astro";
+import ContentSection from "~/components/landing/content-section.astro";
+import ProjectCard from "~/components/landing/project-card.astro";
 
 const featuredProjects = await getCollection(
   "project",

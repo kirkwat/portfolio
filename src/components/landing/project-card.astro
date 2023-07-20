@@ -88,10 +88,10 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
           {
             project.data.technologies.map((tech) => (
               <li
-                id={tech}
-                class="rounded-full border border-current bg-offset px-3 py-1.5 font-semibold opacity-80 transition-all duration-300 text-sm hover:opacity-100 dark:border-none"
+                id={tech.name}
+                class="rounded-full border border-current bg-offset px-3 py-1.5 font-semibold opacity-80 transition-all duration-300 text-sm hover:opacity-100"
               >
-                {tech}
+                {tech.name}
               </li>
             ))
           }

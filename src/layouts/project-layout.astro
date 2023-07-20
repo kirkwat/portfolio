@@ -1,37 +1,16 @@
 ---
-import { Icon } from "astro-icon";
-import { CollectionEntry, getCollection } from "astro:content";
-import Head from "~/components/head.astro";
-import ProjectHeader from "~/components/project-header.astro";
-import Footer from "~/components/footer.astro";
-import ProjectProgressTracker from "~/components/project-progress-tracker.astro";
+import type { CollectionEntry } from "astro:content";
+import Head from "~/components/global/head.astro";
+import ProjectHeader from "~/components/project/project-header.astro";
+import ProjectNavigation from "~/components/project/project-navigation.astro";
+import Footer from "~/components/global/footer.astro";
+import TechBadge from "~/components/shared/tech-badge.astro";
 
 interface Props {
   frontmatter: CollectionEntry<"project">["data"];
 }
 
 const { frontmatter } = Astro.props;
-
-const formattedDate = new Date("2022-08-16").toLocaleDateString("en-us", {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-});
-
-const featuredProjects = await getCollection(
-  "project",
-  ({ data }) => "featured" in data
-);
-const orderedProjects = featuredProjects.sort(
-  (a, b) => a.data.featured! - b.data.featured!
-);
-
-const currentPost = orderedProjects.findIndex((project) => {
-  return Astro.request.url.includes(project.slug ?? "");
-});
-
-const nextPost = orderedProjects[currentPost + 1];
-const prevPost = orderedProjects[currentPost - 1];
 ---
 
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
@@ -40,60 +19,26 @@ const prevPost = orderedProjects[currentPost - 1];
     class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
   >
     <ProjectHeader />
-    <ProjectProgressTracker />
     <main
       class="mx-auto flex max-w-4xl flex-col items-center px-8 pt-24 md:pt-32"
     >
       <div>
         <h1 class="mb-4 font-medium text-4xl">{frontmatter.longTitle}</h1>
-        <div class="flex gap-4">
-          <p class="flex items-center text-sm">
-            <Icon
-              name="system-uicons:calendar-month"
-              class="mr-2 text-lime-500"
-            />
-            {formattedDate}
-          </p>
-          <p class="flex items-center text-sm">
-            <Icon name="system-uicons:clock" class="mr-2 text-lime-500" />
-            6 min read
-          </p>
-        </div>
+        {
+          frontmatter.technologies && (
+            <div class="flex flex-wrap gap-4">
+              {frontmatter.technologies.map((tech) => (
+                <TechBadge tech={tech} />
+              ))}
+            </div>
+          )
+        }
         <hr class="my-5" />
         <article id="markdown-content">
           <slot />
         </article>
       </div>
-      <div class="mb-14 w-full max-w-4xl">
-        <div class="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:gap-6">
-          {
-            prevPost && (
-              <a
-                href={`/projects/${prevPost.slug}`}
-                class="flex grow flex-col rounded border border-zinc-700 p-4 transition duration-500 ease-out text-sm hover:border-current"
-              >
-                <p class="mb-1">&larr; Previous project</p>
-                <p class="font-semibold opacity-70">
-                  {prevPost.data.longTitle}
-                </p>
-              </a>
-            )
-          }
-          {
-            nextPost && (
-              <a
-                href={`/projects/${nextPost.slug}`}
-                class="flex grow flex-col rounded border border-zinc-700 p-4 text-right transition duration-500 ease-out text-sm hover:border-current"
-              >
-                <p class="mb-1">Next project &rarr;</p>
-                <p class="font-semibold opacity-70">
-                  {nextPost.data.longTitle}
-                </p>
-              </a>
-            )
-          }
-        </div>
-      </div>
+      <ProjectNavigation />
     </main>
     <Footer />
   </body>
