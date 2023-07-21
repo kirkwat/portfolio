@@ -1,5 +1,0 @@
-/* TODO: consider creating <GradientText> components */
-.gradient-text {
-  @apply bg-clip-text text-transparent;
-  @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;
-}

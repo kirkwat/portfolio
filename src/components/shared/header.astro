@@ -1,6 +1,12 @@
 ---
 import ThemeSwitcher from "~/components/shared/theme-switcher.astro";
-import ProjectProgressTracker from "./project-progress-tracker.astro";
+import ProjectProgressTracker from "../project/project-progress-tracker.astro";
+
+interface Props {
+  projectHeader?: boolean;
+}
+
+const { projectHeader = false } = Astro.props;
 ---
 
 <header
@@ -9,14 +15,14 @@ import ProjectProgressTracker from "./project-progress-tracker.astro";
   <div class="mx-auto flex max-w-4xl items-center justify-between px-8">
     <a
       id="site-title"
-      class="flex transform items-center gap-2 font-medium tracking-tight transition-all duration-500 text-lg hover:text-secondary"
+      class="gradient-text flex transform items-center gap-2 font-extrabold tracking-tight transition-all duration-500 text-lg hover:text-secondary hover:opacity-80"
       href="/"
     >
       <h1 class="sr-only">Kirk Watson</h1>
       <h1>Kirk Watson</h1>
     </a>
     <div class="flex items-center gap-4">
-      <ProjectProgressTracker />
+      {projectHeader && <ProjectProgressTracker />}
       <ThemeSwitcher id="theme-switcher-project" />
     </div>
   </div>

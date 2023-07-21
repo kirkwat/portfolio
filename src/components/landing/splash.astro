@@ -9,12 +9,17 @@ import Starfield from "~/components/landing/starfield.astro";
     <HeroImage />
   </div>
   <div class="relative flex h-full items-center justify-center">
-    <h2 class="flex flex-col gap-2 self-auto justify-self-end sm:gap-4">
+    <h2
+      class="glitch flex flex-col gap-2 self-auto justify-self-end text-center sm:gap-4"
+    >
       <div
-        class="gradient-text glitch text-center font-bold tracking-tighter text-8xl"
+        class="gradient-text text-center font-bold tracking-tighter text-8xl"
       >
         Kirk
         <br /> Watson
+      </div>
+      <div class="font-bold text-secondary text-2xl">
+        Professional<br /> Snake Charmer
       </div>
     </h2>
   </div>
@@ -40,7 +45,7 @@ import Starfield from "~/components/landing/starfield.astro";
       amplitudeY: 0.2,
     },
     slice: {
-      count: 6,
+      count: 10,
       velocity: 15,
       minHeight: 0.02,
       maxHeight: 0.15,

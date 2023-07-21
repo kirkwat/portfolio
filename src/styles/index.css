@@ -1,3 +1,12 @@
-@import "global.css";
 @import "theme.css";
 @import "markdown.css";
+
+/* .gradient-text {
+  @apply bg-clip-text font-extrabold tracking-tight text-transparent;
+  @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;
+} */
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;
+}
