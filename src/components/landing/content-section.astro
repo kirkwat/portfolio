@@ -15,6 +15,6 @@ const { id, title, subtitle } = Astro.props;
   <h3 class="gradient-text text-left font-extrabold tracking-tight text-4xl">
     {title}
   </h3>
-  {subtitle && <p class="font-medium text-offset">{subtitle}</p>}
+  {subtitle && <p class="text-center font-medium text-offset">{subtitle}</p>}
   <slot />
 </section>
