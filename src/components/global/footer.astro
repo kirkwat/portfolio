@@ -1,8 +1,11 @@
 ---
 import { Icon } from "astro-icon";
-import type { FooterLink } from "~/types";
 
-const links: Array<FooterLink> = [
+const links: {
+  description: string;
+  icon: string;
+  url: string;
+}[] = [
   {
     url: "https://github.com/kirkwat",
     description: "Connect via GitHub",
