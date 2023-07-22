@@ -1,12 +1,17 @@
 @import "theme.css";
 @import "markdown.css";
 
-/* .gradient-text {
+.gradient-text-title {
   @apply bg-clip-text font-extrabold tracking-tight text-transparent;
   @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;
-} */
+}
 
-.gradient-text {
+[data-theme="light"] .gradient-text {
   @apply bg-clip-text text-transparent;
-  @apply bg-gradient-to-br from-zinc-300 via-zinc-400 to-zinc-500;
+  @apply bg-gradient-to-br from-zinc-400 via-zinc-500 to-zinc-600;
+}
+
+[data-theme="dark"] .gradient-text {
+  @apply bg-clip-text text-transparent;
+  @apply bg-gradient-to-br from-zinc-200 via-zinc-300 to-zinc-600;
 }

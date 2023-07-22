@@ -9,7 +9,7 @@ import ThemeSwitcher from "~/components/shared/theme-switcher.astro";
   <div class="mx-auto flex w-full max-w-6xl items-center justify-between">
     <a
       id="site-title"
-      class="gradient-text flex scale-0 transform items-center gap-2 font-extrabold tracking-tight transition-all duration-500 text-lg hover:text-secondary hover:opacity-80"
+      class="gradient-text flex scale-0 transform items-center gap-2 font-extrabold tracking-tight transition-all duration-500 text-lg"
       href="/"
     >
       <h1 class="sr-only">Kirk Watson</h1>
@@ -37,5 +37,6 @@ import ThemeSwitcher from "~/components/shared/theme-switcher.astro";
 
   :global(.fixed-header) #site-title {
     @apply scale-100;
+    @apply hover:text-secondary hover:opacity-80;
   }
 </style>
