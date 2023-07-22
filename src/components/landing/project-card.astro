@@ -2,6 +2,7 @@
 import { Picture } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 import type { CollectionEntry } from "astro:content";
+import TechBadge from "~/components/shared/tech-badge.astro";
 
 export interface Props {
   project: CollectionEntry<"project">;
@@ -12,91 +13,88 @@ const widths = [450, 800];
 const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
 ---
 
-<li id={project.id} class="group aspect-video hover:!text-default">
-  <figure
-    class="relative h-full w-full overflow-hidden rounded-xl drop-shadow-lg transition-all duration-300 group-hover:drop-shadow-2xl group-focus:drop-shadow-2xl"
-  >
-    <Picture
-      class="h-full w-full bg-cover object-cover object-top opacity-75 transition-all duration-300 group-hover:scale-110 group-focus:scale-110"
-      src={project.data.image}
-      widths={widths}
-      sizes={sizes}
-      aspectRatio={"16:9"}
-      fit="fill"
-      alt={`A screenshot of ${project.data.title}`}
-    />
-    <figcaption class="absolute inset-0">
-      <div
-        class="flex h-full flex-col items-start justify-end gap-2 p-4 group-hover:justify-between group-focus:justify-between"
-      >
-        <h3
-          class="text-center font-extrabold uppercase transition-all duration-300 text-xl group-hover:hidden group-focus:hidden"
+<li id={project.id}>
+  <div class="group aspect-video hover:!text-default">
+    <figure
+      class="relative h-full w-full overflow-hidden rounded-xl drop-shadow-lg transition-all duration-300 group-hover:drop-shadow-2xl group-focus:drop-shadow-2xl"
+    >
+      <Picture
+        class="h-full w-full bg-cover object-cover object-top opacity-75 transition-all duration-300 group-hover:scale-105 group-focus:scale-105"
+        src={project.data.image}
+        widths={widths}
+        sizes={sizes}
+        aspectRatio={"16:9"}
+        fit="fill"
+        alt={project.data.title}
+      />
+      <figcaption class="absolute inset-0">
+        <div
+          class="flex h-full flex-col items-start justify-end gap-2 p-4 group-hover:justify-between group-focus:justify-between"
         >
-          {project.data.title}
-        </h3>
-        <div class="hidden gap-3 group-hover:flex group-focus:flex">
-          {
-            project.slug && (
-              <a
-                href={`/projects/${project.slug}`}
-                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-              >
-                <Icon name="charm:info" class="h-6 w-6" />
-              </a>
-            )
-          }
-          {
-            project.data.links.site && (
-              <a
-                href={project.data.links.site}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-              >
-                <Icon name="ci:external-link" class="h-6 w-6" />
-              </a>
-            )
-          }
-          {
-            project.data.links.github && (
-              <a
-                href={project.data.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-              >
-                <Icon name="fa-brands:github" class="h-6 w-6" />
-              </a>
-            )
-          }
-          {
-            project.data.links.demo && (
-              <a
-                href={project.data.links.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="rounded-full border border-current bg-offset px-3 py-2 opacity-80 hover:opacity-100"
-              >
-                <Icon name="fa-brands:youtube" class="h-6 w-6" />
-              </a>
-            )
-          }
+          <div
+            class="mb-auto ml-auto flex gap-3 rounded-full border border-current bg-offset px-2.5 py-1.5 opacity-80 hover:opacity-100"
+          >
+            {
+              project.data.links.site && (
+                <a
+                  href={project.data.links.site}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="opacity-80 hover:text-secondary hover:opacity-100"
+                >
+                  <Icon name="ci:external-link" class="h-6 w-6" />
+                </a>
+              )
+            }
+            {
+              project.data.links.github && (
+                <a
+                  href={project.data.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="opacity-80 hover:text-black hover:opacity-100"
+                >
+                  <Icon name="fa-brands:github" class="h-6 w-6" />
+                </a>
+              )
+            }
+            {
+              project.data.links.demo && (
+                <a
+                  href={project.data.links.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="opacity-80 hover:text-red-500 hover:opacity-100"
+                >
+                  <Icon name="fa-brands:youtube" class="h-6 w-6" />
+                </a>
+              )
+            }
+          </div>
+          <h4
+            class="text-center font-extrabold uppercase tracking-tight text-secondary drop-shadow-2xl transition-all duration-300 text-xl group-hover:hidden group-focus:hidden"
+          >
+            {project.data.title}
+          </h4>
+          <ul
+            class="hidden flex-row flex-wrap-reverse gap-x-2 gap-y-1.5 group-hover:flex group-focus:flex"
+          >
+            {project.data.technologies.map((tech) => <TechBadge tech={tech} />)}
+          </ul>
         </div>
-        <ul
-          class="hidden flex-row flex-wrap-reverse gap-3 group-hover:flex group-focus:flex"
+      </figcaption>
+    </figure>
+  </div>
+  <div class="text-end">
+    {
+      project.slug && (
+        <a
+          href={`/projects/${project.slug}`}
+          class="mr-2 font-medium text-offset text-sm hover:text-secondary hover:underline"
         >
-          {
-            project.data.technologies.map((tech) => (
-              <li
-                id={tech.name}
-                class="rounded-full border border-current bg-offset px-3 py-1.5 font-semibold opacity-80 transition-all duration-300 text-sm hover:opacity-100"
-              >
-                {tech.name}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </figcaption>
-  </figure>
+          Learn more...
+        </a>
+      )
+    }
+  </div>
 </li>

@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Head from "~/components/global/head.astro";
-import ProjectHeader from "~/components/project/project-header.astro";
+import Header from "~/components/shared/header.astro";
 import ProjectNavigation from "~/components/project/project-navigation.astro";
 import Footer from "~/components/global/footer.astro";
 import TechBadge from "~/components/shared/tech-badge.astro";
@@ -13,26 +13,26 @@ interface Props {
 const { frontmatter } = Astro.props;
 ---
 
+<!DOCTYPE html>
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
-  <Head title={frontmatter.longTitle} description={frontmatter.description} />
+  <Head
+    title={frontmatter.longTitle + " | Kirk Watson"}
+    description={frontmatter.description}
+  />
   <body
     class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
   >
-    <ProjectHeader />
+    <Header projectHeader />
     <main
       class="mx-auto flex max-w-4xl flex-col items-center px-8 pt-24 md:pt-32"
     >
       <div>
-        <h1 class="mb-4 font-medium text-4xl">{frontmatter.longTitle}</h1>
-        {
-          frontmatter.technologies && (
-            <div class="flex flex-wrap gap-4">
-              {frontmatter.technologies.map((tech) => (
-                <TechBadge tech={tech} />
-              ))}
-            </div>
-          )
-        }
+        <h1 class="gradient-text mb-4 font-extrabold tracking-tight text-4xl">
+          {frontmatter.longTitle}
+        </h1>
+        <ul class="flex flex-wrap gap-x-2 gap-y-1.5">
+          {frontmatter.technologies.map((tech) => <TechBadge tech={tech} />)}
+        </ul>
         <hr class="my-5" />
         <article id="markdown-content">
           <slot />

@@ -1,8 +1,13 @@
 ---
-import "@fontsource-variable/inter";
+import "@fontsource/roboto/100.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import "@fontsource/roboto/900.css";
 import Splash from "~/components/landing/splash.astro";
 import Head from "~/components/global/head.astro";
-import Header from "~/components/landing/header.astro";
+import LandingHeader from "~/components/landing/landing-header.astro";
 import Footer from "~/components/global/footer.astro";
 import Certifications from "~/components/landing/certs.astro";
 import Projects from "~/components/landing/projects.astro";
@@ -15,9 +20,9 @@ import "~/styles/index.css";
   <body
     class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
   >
-    <Header />
+    <LandingHeader />
     <Splash />
-    <div class="space-y-24 px-8 py-32">
+    <div class="space-y-24 px-8 py-24 md:py-32">
       <Projects />
       <Certifications />
     </div>

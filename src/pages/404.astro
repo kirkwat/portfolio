@@ -1,0 +1,37 @@
+---
+import "@fontsource/roboto/100.css";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import "@fontsource/roboto/900.css";
+import Footer from "~/components/global/footer.astro";
+import Head from "~/components/global/head.astro";
+import Header from "~/components/shared/header.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <Head title="404 | Kirk Watson" description={"404 Page Not Found."} />
+  <body
+    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header />
+    <main class="relative flex h-full flex-col items-center justify-center">
+      <h2 class="flex flex-col text-center sm:gap-4">
+        <div
+          class="gradient-text text-center font-bold tracking-tighter text-6xl"
+        >
+          404 Page
+          <br /> Not Found
+        </div>
+        <div
+          class="font-base text-offset underline transition-all duration-300 text-lg hover:text-secondary"
+        >
+          <a href="/">Return to Home</a>
+        </div>
+      </h2>
+      <Footer />
+    </main>
+  </body>
+</html>
