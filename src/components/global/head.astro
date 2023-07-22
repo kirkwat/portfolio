@@ -12,7 +12,7 @@ const { generator, site } = Astro;
 const {
   title = "Kirk Watson",
   description = "I am a software engineer currently studying Computer Science, Data Science, and Mathematics at Southern Methodist University.",
-  image = new URL("social.jpg", site),
+  image = new URL("social.png", site),
 } = Astro.props;
 ---
 
@@ -20,7 +20,9 @@ const {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon64.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/logo192.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <meta name="generator" content={generator} />
 

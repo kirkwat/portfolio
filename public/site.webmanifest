@@ -1,0 +1,24 @@
+{
+  "name": "Kirk Watson Portfolio",
+  "short_name": "Kirk Watson",
+  "icons": [
+    {
+      "src": "favicon64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
