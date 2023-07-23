@@ -3,10 +3,9 @@
 </div>
 
 <script>
-  import invariant from "tiny-invariant";
-
-  const COUNT = 900;
+  const COUNT = 800;
   const SPEED = 0.1;
+  const MAX_THROTTLE_FPS = 60;
 
   class Star {
     x: number;
@@ -53,22 +52,19 @@
   }
 
   const stars = Array.from({ length: COUNT }, () => new Star(0, 0, 0));
+
   let rafId = 0;
+  let lastFrameTime = 0;
 
   const canvas = document.querySelector(
     "#starfield-canvas"
   ) as HTMLCanvasElement;
-  invariant(canvas, "canvas should not be null");
   const ctx = canvas.getContext("2d");
 
   const container = document.querySelector("#starfield") as HTMLElement;
-  invariant(container, "container should not be null");
-  const resizeObserver = new ResizeObserver(setup);
-  resizeObserver.observe(container);
 
   function setup() {
-    invariant(ctx, "canvas context should not be null");
-    rafId > 0 && cancelAnimationFrame(rafId);
+    cancelAnimationFrame(rafId);
 
     const { clientWidth: width, clientHeight: height } = container;
     const dpr = window.devicePixelRatio || 1;
@@ -76,7 +72,7 @@
     canvas.height = height * dpr;
     canvas.style.width = `${width}px`;
     canvas.style.height = `${height}px`;
-    ctx.scale(dpr, dpr);
+    ctx!.scale(dpr, dpr);
 
     for (const star of stars) {
       star.x = Math.random() * width - width / 2;
@@ -84,22 +80,41 @@
       star.z = 0;
     }
 
-    ctx.translate(width / 2, height / 2);
-    ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-    ctx.strokeStyle = "white";
-    rafId = requestAnimationFrame(frame);
+    ctx!.translate(width / 2, height / 2);
+    ctx!.fillStyle = "rgba(0, 0, 0, 0.4)";
+    ctx!.strokeStyle = "white";
+
+    requestAnimationFrame(frame);
   }
 
-  function frame() {
-    invariant(ctx, "canvas context should not be null");
+  function frame(timestamp: DOMHighResTimeStamp) {
     const { clientWidth: width, clientHeight: height } = container;
 
-    for (const star of stars) {
-      star.update(width, height, SPEED);
-      star.draw(ctx);
+    if (!lastFrameTime) {
+      lastFrameTime = timestamp;
     }
 
-    ctx.fillRect(-width / 2, -height / 2, width, height);
+    const elapsed = timestamp - lastFrameTime;
+    if (elapsed > 1000 / MAX_THROTTLE_FPS) {
+      if (ctx) {
+        ctx.clearRect(-width / 2, -height / 2, width, height);
+
+        for (const star of stars) {
+          star.update(width, height, SPEED);
+          star.draw(ctx);
+        }
+
+        ctx.fillRect(-width / 2, -height / 2, width, height);
+      }
+
+      lastFrameTime = timestamp;
+    }
+
     rafId = requestAnimationFrame(frame);
   }
+
+  const resizeObserver = new ResizeObserver(setup);
+  resizeObserver.observe(container);
+
+  setup();
 </script>
