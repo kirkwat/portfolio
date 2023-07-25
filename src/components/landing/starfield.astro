@@ -44,7 +44,6 @@
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-      ctx.lineWidth = this.z;
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.xPrev, this.yPrev);
@@ -103,3 +102,15 @@
     rafId = requestAnimationFrame(frame);
   }
 </script>
+
+<style>
+  #starfield {
+    transform: translateZ(0);
+  }
+  #starfield-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+  }
+</style>

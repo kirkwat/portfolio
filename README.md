@@ -28,4 +28,4 @@
 | `npm run format`       | Format code with [Prettier](https://prettier.io/) |
 | `npm run clean`        | Remove `node_modules` and build output            |
 
-*Inspired by various repos on GitHub.*
+_Inspired by various repos on GitHub._
