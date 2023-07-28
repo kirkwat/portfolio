@@ -16,7 +16,8 @@ const project = defineCollection({
     longTitle: z.string().min(1),
     description: z.string().min(1),
     image: z.string(),
-    badgeColor: z.string(),
+    logo: z.string(),
+    themeColor: z.string(),
     featured: z.number().min(1).optional(),
     technologies: z.array(z.object({ name: z.string(), color: z.string() })),
     links: z.object({
