@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import ContentSection from "./content-section.astro";
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 
 const featuredCerts = await getCollection(
   "cert",
@@ -24,11 +24,10 @@ const sizes = "100vw";
     {
       orderedCerts.map((cert) => (
         <li id={cert.id}>
-          <Picture
+          <Image
             class="h-full w-full object-cover transition-all duration-300 hover:scale-110 focus:scale-110"
             src={cert.data.image}
             widths={widths}
-            aspectRatio={1}
             sizes={sizes}
             alt={cert.data.title}
           />

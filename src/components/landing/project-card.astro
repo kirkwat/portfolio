@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon";
 import type { CollectionEntry } from "astro:content";
 import TechBadge from "~/components/shared/tech-badge.astro";
@@ -18,13 +18,11 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
     <figure
       class="relative h-full w-full overflow-hidden rounded-lg drop-shadow-lg transition-all duration-300 group-hover:drop-shadow-2xl group-focus:drop-shadow-2xl md:rounded-xl"
     >
-      <Picture
+      <Image
         class="h-full w-full bg-cover object-cover object-top opacity-75 transition-all duration-300 group-hover:scale-105 group-focus:scale-105"
         src={project.data.image}
         widths={widths}
         sizes={sizes}
-        aspectRatio={"16:9"}
-        fit="fill"
         alt={`${project.data.title} Preview`}
       />
       <figcaption class="absolute inset-0">
@@ -71,10 +69,10 @@ const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
               )
             }
           </div>
-          <img
+          <Image
             src={project.data.logo}
             alt={`${project.data.title} Logo`}
-            class="h-[20%] object-contain transition-all duration-300 group-hover:hidden group-focus:hidden lg:h-[15%]"
+            class="h-[20%] w-min object-contain transition-all duration-300 group-hover:hidden group-focus:hidden lg:h-[15%]"
           />
           <ul
             class="hidden flex-row flex-wrap-reverse gap-x-2 gap-y-1.5 group-hover:flex group-focus:flex"

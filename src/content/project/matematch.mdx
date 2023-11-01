@@ -2,8 +2,8 @@
 title: "MateMatch"
 longTitle: "MateMatch - Roommate Finder"
 description: "This full-stack web application allows users to find new roommates tailored to their preferences."
-image: "/images/project/matematch/thumbnail.jpg"
-logo: "/images/project/matematch/logo.png"
+image: "./images/matematch/thumbnail.jpg"
+logo: "./images/matematch/logo.png"
 themeColor: "#84cc16"
 featured: 2
 technologies:
@@ -26,13 +26,11 @@ links:
   demo: "https://www.youtube.com/watch?v=c0ZcLqA5QlE"
 ---
 
+import { Image } from "astro:assets";
+import Logo from "./images/matematch/logo.png";
+
 <a href="https://matematching.com/" target="\_blank" rel="noopener noreferrer">
-  <img
-    src="/images/project/matematch/logo.png"
-    alt="MateMatch Logo"
-    width="400rem"
-    class="no-shadow"
-  />
+  <Image src={Logo} alt="MateMatch Logo" width="400" class="no-shadow" />
 </a>
 
 #### This full-stack web application allows users to find new roommates tailored to their preferences.
@@ -40,6 +38,8 @@ links:
 - [Click here](https://matematching.com/) to visit the site.
 - [Click here](https://github.com/kirkwat/mate-match) to view the source code.
 - [Click here](https://www.youtube.com/watch?v=c0ZcLqA5QlE) to view the demo.
+
+Logo.src
 
 ## Table of Contents
 
