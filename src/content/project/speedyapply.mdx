@@ -2,8 +2,8 @@
 title: "SpeedyApply"
 longTitle: "SpeedyApply - Job Application Autofill Tool"
 description: "This Chrome extension is a job application autofill tool for portals such as Workday, ICIMS, and Greenhouse."
-image: "/images/project/speedyapply/thumbnail.jpg"
-logo: "/images/project/speedyapply/logo.png"
+image: "./images/speedyapply/thumbnail.png"
+logo: "./images/speedyapply/logo.png"
 themeColor: "#6366f1"
 featured: 1
 technologies:
@@ -20,17 +20,11 @@ links:
   demo: "https://www.youtube.com/watch?v=UGazvOuWkZo"
 ---
 
-<a
-  href="https://www.speedyapply.com/"
-  target="\_blank"
-  rel="noopener noreferrer"
->
-  <img
-    src="/images/project/speedyapply/logo.png"
-    alt="SpeedyApply Logo"
-    width="400rem"
-    class="no-shadow"
-  />
+import { Image } from "astro:assets";
+import Logo from "./images/speedyapply/logo.png";
+
+<a href="https://speedyapply.com/" target="\_blank" rel="noopener noreferrer">
+  <Image src={Logo} alt="SpeedyApply Logo" width="400" class="no-shadow" />
 </a>
 
 #### This Chrome extension is a job application autofill tool for portals such as Workday, ICIMS, and Greenhouse.
